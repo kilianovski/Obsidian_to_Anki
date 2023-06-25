@@ -296,8 +296,8 @@ export class RegexNote {
             this.formatter.format_note_with_frozen_fields(template, frozen_fields_dict)
         }
 		if (context) {
-			const context_field = data.context_fields[this.note_type]
-			template["fields"][context_field] += context
+			const context_field = data.context_fields[this.note_type] || 'Front'
+			template["fields"][context_field] += '<br><br><br>' + '<i>' + context + '</i>'
 		}
 		if (this.note_type.includes("Cloze") && !(note_has_clozes(template))) {
 			this.identifier = CLOZE_ERROR //An error code that says "don't add this note!"
